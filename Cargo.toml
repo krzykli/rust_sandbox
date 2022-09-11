@@ -1,5 +1,6 @@
 [workspace]
 
 members = [
-    "char_count_tui"
+    "char_count_tui",
+    "stocks"
 ]
