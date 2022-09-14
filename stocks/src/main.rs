@@ -130,7 +130,6 @@ fn build_request(function: &str, symbol: &str, interval: &str) -> AlphaVantageRe
 }
 
 fn main() {
-
     nannou::app(model).update(update).simple_window(view).run();
 }
 
@@ -194,10 +193,10 @@ fn view(app: &App, _model: &Model, frame: Frame) {
         .fold(f32::NEG_INFINITY, |a, &b| a.max(b));
     let _average_close: f32 = close_values.iter().sum::<f32>() / close_values.len() as f32;
 
-    let legend_x = -win_rect.w()/2.0 + 50.0;
+    let legend_x = -win_rect.w() / 2.0 + 50.0;
 
     draw.line()
-        .start(pt2(legend_x +10.0, bound_min))
+        .start(pt2(legend_x + 10.0, bound_min))
         .end(pt2(legend_x - 10.0, bound_min))
         .weight(2.0)
         .color(DARKGRAY);
@@ -216,7 +215,6 @@ fn view(app: &App, _model: &Model, frame: Frame) {
         .y(bound_max + 20.0)
         .font_size(10);
 
-
     let speed = 70.0;
     let spacing = 15.0;
     let offset = -app.time * speed;
@@ -232,15 +230,14 @@ fn view(app: &App, _model: &Model, frame: Frame) {
         }
 
         let y = {
-            ( (entry.close - min_close) / (max_close - min_close) ) * (bound_max - bound_min) + bound_min
+            ((entry.close - min_close) / (max_close - min_close)) * (bound_max - bound_min)
+                + bound_min
         };
 
         (pt2(x, y), color)
     });
 
-
     draw.polyline().weight(3.0).points_colored(points);
-
 
     draw.text(&current_price.to_string())
         .x(win_rect.x() / 2.0)
