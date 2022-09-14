@@ -4,3 +4,5 @@ members = [
     "char_count_tui",
     "stocks"
 ]
+
+resolver = "2"
